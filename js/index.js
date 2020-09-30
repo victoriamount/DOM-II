@@ -26,10 +26,11 @@ const pickImg = document.querySelector(".content-destination img");
 const destTitle = document.querySelectorAll(".destination h4");
 const destText = document.querySelectorAll(".destination p");
 const destButton = document.querySelectorAll(".btn");
-// Titles, Texts, and buttons from Sign Me Up! section
+const destSec = document.querySelectorAll(".destination");
+// Whole sections, Titles, Texts, and buttons from Sign Me Up! section
 const allImg = document.querySelectorAll("img");
 // All images
-const allText = document.querySelectorAll("h1 h2 h3 h4 p a");
+const allText = document.querySelectorAll("h1,h2,h3,h4,p,a");
 // All text
 
 
@@ -108,15 +109,50 @@ destButton.forEach(function(item){
 })
 // 7 - MOUSING OUT the SIGN UP BUTTONS turns their text white again
 
+destButton[1].addEventListener("click", function(event){
+    event.stopPropagation();
+    allImg.forEach(function(item){
+        item.style.display = "none";
+    })
+})
+// 8 - Images go away when you CLICK the MIDDLE SIGN UP BUTTON 
 
+destButton[1].addEventListener("dblclick", function(event){
+    allImg.forEach(function(item){
+        item.style.display = "inline";
+    })
+})
+// 9 - Images come back when you DOUBLE CLICK the MIDDLE SIGN UP BUTTON
 
-
-
-
+function clearScreen(event){
+    allImg.forEach(function(item){
+        item.style.display = "none";
+    })
+    allText.forEach(function(item){
+        item.style.color = "white";
+    })
+    destButton.forEach(function(item){
+        item.style.backgroundColor = "white";
+    })
+}
+logo.addEventListener("drag", clearScreen);
+// 10 - Highlight and DRAG the logo clears the screen
 
 
 //* [ ] Nest two similar events somewhere in the site and prevent the event propagation properly. Remember not all event types bubble.
 
+destSec[1].addEventListener("click", function(event){
+    destTitle.forEach(function(item){
+        item.style.color = "purple";
+    })
+});
+// Event #8 above also triggers this event, so the stop propagation tag is up there
 
 
 //* [ ] Stop the navigation items from refreshing the page by using `preventDefault()`
+
+navLink.forEach(function(item){
+    item.addEventListener("click", function(event){
+        event.preventDefault();
+    })
+})
